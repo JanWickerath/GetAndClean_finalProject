@@ -24,6 +24,22 @@ mergedDF <- rbind(test.df, train.df)
 
 # First use *features.txt* to get column names that can be used to identify mean
 # and std values.
-features <- as.character(read.table("./data/features.txt")$V2)
-var_names <- c(features, "id", "act_label")
-names(mergedDF) <- var_names
+features <- read.table("./data/features.txt")$V2
+
+# Select the columns with mean and standard deviation values from mergedDF
+mergedSel <- select(mergedDF, id, act_label, grep("mean()|std()", features))
+# names(mergedSel) <- c(
+#     "id", "act_label", as.character(features[grep("mean()|std()", features)])
+#     )
+
+## Step 3: Use descriptive activity names to name the activities in the data set
+# Import activity labels as a lookup table
+lookup_tab <- as_tibble(read.table("./data/activity_labels.txt"))
+names(lookup_tab) <- c("act_label", "act_name")
+mergedSel <- merge(mergedSel, lookup_tab, by = "act_label") %>% 
+    select(-act_label)
+
+## Step 4: Appropriately label the data set with descriptive variable names
+# names(mergedSel) <- c(
+#     "id", "act_label", as.character(features[grep("mean()|std()", features)])
+#     )
