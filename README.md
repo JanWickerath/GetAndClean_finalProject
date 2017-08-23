@@ -22,3 +22,10 @@ renames the numerical value to *the same name that it has in the dataframe
 created before*. Then the names can be added by merging the intermediate data
 frame from above with the lookup table by the column that stores the numerical
 value of the activity label.
+
+## Step 4:
+
+Use the naming list identified in step 2 as column names. The names are
+slightly altered so that they do not include the special character "()" and "-"
+anymore.
+
