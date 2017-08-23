@@ -52,4 +52,4 @@ tidy.df <- group_by(mergedSel, id, act_name) %>%
     summarise_all(mean)
 
 ## Store tidy dataset as .csv file
-write.csv(tidy.df, file = "tidy_data.csv")
+write.csv(tidy.df, file = "tidy_data.csv", row.names = FALSE)
