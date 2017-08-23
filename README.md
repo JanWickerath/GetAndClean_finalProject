@@ -17,3 +17,8 @@ data frame.
 
 ## Step 3:
 
+Step 3 first loads the table in `activity_labels.txt` as a lookup table and
+renames the numerical value to *the same name that it has in the dataframe
+created before*. Then the names can be added by merging the intermediate data
+frame from above with the lookup table by the column that stores the numerical
+value of the activity label.
