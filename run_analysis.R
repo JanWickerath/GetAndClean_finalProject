@@ -40,6 +40,9 @@ mergedSel <- merge(mergedSel, lookup_tab, by = "act_label") %>%
     select(-act_label)
 
 ## Step 4: Appropriately label the data set with descriptive variable names
-# names(mergedSel) <- c(
-#     "id", "act_label", as.character(features[grep("mean()|std()", features)])
-#     )
+nice_names <- gsub(
+    "[(\\(\\)) -]", "", as.character(features[grep("mean()|std()", features)])
+    )
+names(mergedSel) <- c(
+    "id", nice_names, "act_name"
+    )
