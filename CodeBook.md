@@ -1,3 +1,6 @@
+Code Book
+=========
+
 id
 --
 Identifier for each subject.
