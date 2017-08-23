@@ -29,3 +29,12 @@ Use the naming list identified in step 2 as column names. The names are
 slightly altered so that they do not include the special character "()" and "-"
 anymore.
 
+## Step 5:
+
+Group the intermediate dataframe at the end of step 4 by subject id and
+activity names and then use dplyr's `summarize_all()` function to get the means
+for each subject on each activity.
+
+As a last step the script writes the final dataframe to a file called
+`tidy_data.csv`. The dataset can be read into R by the command
+`read.csv("tidy_data.csv")`.
