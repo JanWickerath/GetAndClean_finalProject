@@ -28,9 +28,6 @@ features <- read.table("./data/features.txt")$V2
 
 # Select the columns with mean and standard deviation values from mergedDF
 mergedSel <- select(mergedDF, id, act_label, grep("mean\\(\\)|std\\(\\)", features))
-# names(mergedSel) <- c(
-#     "id", "act_label", as.character(features[grep("mean()|std()", features)])
-#     )
 
 ## Step 3: Use descriptive activity names to name the activities in the data set
 # Import activity labels as a lookup table
