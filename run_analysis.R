@@ -1,10 +1,29 @@
 library("dplyr")
 
+## Step 1: Merge Test and Train dataset together
+# Read in test dataset and add id and activity label columns
 test.df <- read.table("./data/test/X_test.txt") %>%
-    as_tibble #%>%
+    as_tibble %>%
+    mutate(
+        id = read.table("./data/test/subject_test.txt")$V1,
+        act_label = read.table("./data/test/y_test.txt")$V1
+    )
 
-names(test.df) <- read.table("./data/features.txt")$V2
-
+# Read in train dataset and add id and activity label columns
 train.df <- read.table("./data/train/X_train.txt") %>%
-    as_tibble
-    
+    as_tibble %>%
+    mutate(
+        id = read.table("./data/train/subject_train.txt")$V1,
+        act_label = read.table("./data/train/y_train.txt")$V1
+    )
+
+# Bind the two datasets together
+mergedDF <- rbind(test.df, train.df)
+
+## Step 2: Extract only the measurment on mean and standard deviation
+
+# First use *features.txt* to get column names that can be used to identify mean
+# and std values.
+features <- as.character(read.table("./data/features.txt")$V2)
+var_names <- c(features, "id", "act_label")
+names(mergedDF) <- var_names
