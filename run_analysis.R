@@ -46,3 +46,12 @@ nice_names <- gsub(
 names(mergedSel) <- c(
     "id", nice_names, "act_name"
     )
+
+## Step 5: From the data set in step 4, creates a second, independent tidy
+## data set with the average of each variable for each activity and each
+## subject.
+tidy.df <- group_by(mergedSel, id, act_name) %>%
+    summarise_all(mean)
+
+## Store tidy dataset as .csv file
+write.csv(tidy.df, file = "tidy_data.csv")
