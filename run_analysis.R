@@ -27,7 +27,7 @@ mergedDF <- rbind(test.df, train.df)
 features <- read.table("./data/features.txt")$V2
 
 # Select the columns with mean and standard deviation values from mergedDF
-mergedSel <- select(mergedDF, id, act_label, grep("mean()|std()", features))
+mergedSel <- select(mergedDF, id, act_label, grep("mean\\(\\)|std\\(\\)", features))
 # names(mergedSel) <- c(
 #     "id", "act_label", as.character(features[grep("mean()|std()", features)])
 #     )
@@ -41,7 +41,8 @@ mergedSel <- merge(mergedSel, lookup_tab, by = "act_label") %>%
 
 ## Step 4: Appropriately label the data set with descriptive variable names
 nice_names <- gsub(
-    "[(\\(\\)) -]", "", as.character(features[grep("mean()|std()", features)])
+    "[(\\(\\)) -]", "", 
+    as.character(features[grep("mean\\(\\)|std\\(\\)", features)])
     )
 names(mergedSel) <- c(
     "id", nice_names, "act_name"
